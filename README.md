@@ -27,7 +27,7 @@ import (
 )
 
 type ExampleInputData struct {
-	Id 						sql.NullInt64		`db:"id"`
+	Id 					sql.NullInt64		`db:"id"`
 	Version 				sql.NullString		`db:"version"`
 	CreatedAt 				mysql.NullTime		`db:"created_at"`
 	AcceptedAt 				mysql.NullTime		`db:"accepted_at"`
@@ -48,14 +48,14 @@ import (
 )
 
 type ExampleOutputData struct {
-	Id 						int			`csv:"id"`
+	Id 					int		`csv:"id"`
 	Version 				string		`csv:"version"`
 	CreatedAt 				time.Time	`csv:"creado"`
 	AcceptedAt 				time.Time	`csv:"aceptado"`
 	ReceivedAt 				time.Time	`csv:"recibido"`
 	DeletedAt 				time.Time	`csv:"eliminado"`
-	Name 				string		`csv:"name"`
-  Fullname 				string		`csv:"apellido"`
+	Name 					string		`csv:"name"`
+  	Fullname 				string		`csv:"fullname"`
 	...
 }
 ```
