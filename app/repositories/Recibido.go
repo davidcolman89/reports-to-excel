@@ -60,7 +60,7 @@ func (r RecibidoRepo) CreateCsv(users []models.ReporteRecibido) error {
 	defer clientsFile.Close()
 
 	gocsv.SetCSVWriter(func(out io.Writer) *gocsv.SafeCSVWriter {
-		//Create new writer that accept enconding 'Windows-1252'
+		//Create new writer that accept encoding 'Windows-1252'
 		writerWindows1552 := charmap.Windows1252.NewEncoder().Writer(out)
 
 		writer := csv.NewWriter(writerWindows1552)
@@ -74,7 +74,7 @@ func (r RecibidoRepo) CreateCsv(users []models.ReporteRecibido) error {
 
 func (r RecibidoRepo) getDataByFuerza(entity *[]entities.ReporteRecibido, fuerza string) error {
 
-	filename := fmt.Sprintf("./app/queries/recibidos/%v.sql",fuerza)
+	filename := fmt.Sprintf("./queries/recibidos/%v.sql",fuerza)
 	sqlFile, err := ioutil.ReadFile(filename)
 
 	if err!=nil {

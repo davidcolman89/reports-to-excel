@@ -13,6 +13,7 @@ type ReporteRecibido struct {
 	AcceptedAt 				time.Time	`csv:"aceptado"`
 	ReceivedAt 				time.Time	`csv:"recibido"`
 	DeletedAt 				time.Time	`csv:"eliminado"`
+	Nombre 					string		`csv:"nombre"`
 	Apellido 				string		`csv:"apellido"`
 	Documento 				string 		`csv:"documento"`
 	Fuerza 					string		`csv:"fuerza"`
