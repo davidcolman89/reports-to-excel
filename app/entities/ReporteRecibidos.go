@@ -7,7 +7,7 @@ import (
 
 type ReporteRecibido struct {
 	Id 						sql.NullInt64		`db:"id"`
-	CaracterDeclaracion 	sql.NullString		`db:"descripcion"`
+	CaracterDeclaracion 	sql.NullString		`db:"caracter_declaracion"`
 	Version 				sql.NullString		`db:"version"`
 	TipoEstado 				sql.NullString		`db:"tipo_estado"`
 	CreatedAt 				mysql.NullTime		`db:"created_at"`

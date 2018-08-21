@@ -7,9 +7,10 @@ import (
 	"github.com/gocarina/gocsv"
 	"github.com/jmoiron/sqlx"
 	"github.com/davidcolman89/manager-sql-struct"
-	"github.com/MakeNowJust/heredoc"
 	"io"
 	"encoding/csv"
+	"io/ioutil"
+	"golang.org/x/text/encoding/charmap"
 )
 
 type RecibidoRepo struct {
@@ -26,9 +27,14 @@ func (r RecibidoRepo) Select() ([]models.ReporteRecibido, error){
 	var entity []entities.ReporteRecibido
 	var model []models.ReporteRecibido
 
-	query := heredoc.Doc(`
-`)
-	err := r.Db.Select(&entity, query)
+	sqlFile, err := ioutil.ReadFile("./app/queries/recibidos/pfa.sql")
+
+	if err!=nil {
+		return model, err
+	}
+
+	query := string(sqlFile)
+	err = r.Db.Select(&entity, query)
 
 	if err!=nil {
 		return model, err
@@ -54,8 +60,12 @@ func (r RecibidoRepo) CreateCsv(users []models.ReporteRecibido) error {
 	defer clientsFile.Close()
 
 	gocsv.SetCSVWriter(func(out io.Writer) *gocsv.SafeCSVWriter {
-		writer := csv.NewWriter(out)
+		//Create new writer that accept enconding 'Windows-1252'
+		writerWindows1552 := charmap.Windows1252.NewEncoder().Writer(out)
+
+		writer := csv.NewWriter(writerWindows1552)
 		writer.Comma = '|'
+
 		return gocsv.NewSafeCSVWriter(writer)
 	})
 

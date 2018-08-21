@@ -16,3 +16,6 @@
 /vendor/
 /storage/
 /.idea/
+/config.json
+/app/queries/
+config/

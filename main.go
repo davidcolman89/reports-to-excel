@@ -5,26 +5,26 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/davidcolman89/reports-to-excel/app/repositories"
 	"github.com/davidcolman89/reports-to-excel/app/services"
+	"github.com/davidcolman89/reports-to-excel/config"
 	"net/http"
 	"fmt"
 	"time"
 )
 
 func main(){
-
+	conf := config.NewConfig("Config")
 	router := gin.Default()
 	router.GET("users", users)
-	router.GET("recibidos", reporteRecibidos)
-	router.Run()
-
+	router.GET("recibidas", declaracionesRecibidas)
+	router.Run(conf.HttpServer)
 }
 
-
 func users(context *gin.Context) {
-
-	db, err := sqlx.Connect("mysql", "root:123456@(localhost:9999)/sdj_20180630")
+	db, err := InitDb()
 	HandleError(context, err)
-	userRepo := repositories.NewUserRepo(db,"storage/users.csv")
+
+	path := fmt.Sprintf("storage/users_%v.csv",time.Now().UnixNano())
+	userRepo := repositories.NewUserRepo(db,path)
 	userService := services.NewUserService(userRepo)
 
 	users, err := userService.Select()
@@ -33,26 +33,40 @@ func users(context *gin.Context) {
 	err = userService.CreateCsv(users)
 	HandleError(context, err)
 
+	context.File(path)
+
 }
 
-func reporteRecibidos(context *gin.Context) {
-	db, err := sqlx.Connect("mysql", "root:123456@(localhost:9999)/sdj_20180630")
+func declaracionesRecibidas(context *gin.Context) {
+	db, err := InitDb()
 	HandleError(context, err)
 
-	path := fmt.Sprint("storage/recibidos_", time.Now().UnixNano(),".csv")
+	fileName := fmt.Sprintf("ddjjrecibidas_%v.csv",time.Now().UnixNano())
+	path := fmt.Sprint("storage/",fileName)
 	repo := repositories.NewRecibidoRepo(db,path)
 	service := services.NewRecibidoService(repo)
-	recibidos, err := service.Select()
 
+	recibidos, err := service.Select()
 	HandleError(context, err)
 
 	err = service.CreateCsv(recibidos)
-
 	HandleError(context, err)
+
+	context.Header("Content-type","application/octet-stream")
+	contentDisposition := fmt.Sprintf("attachment; filename=%s", fileName)
+	context.Header("Content-Disposition", contentDisposition)
+
+	context.File(path)
 }
 
 func HandleError(ctx *gin.Context, err error) {
 	if err != nil {
 		ctx.AbortWithError(http.StatusInternalServerError,err)
 	}
+}
+
+func InitDb() (*sqlx.DB, error){
+	conf := config.NewConfig("Config")
+	dataSourceName := fmt.Sprintf("%s:%s@(%s:%s)/%s",conf.DbUser,conf.DbPass,conf.DbHost,conf.DbPort,conf.DbBbdd)
+	return sqlx.Connect("mysql", dataSourceName)
 }
