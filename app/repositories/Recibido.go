@@ -12,7 +12,6 @@ import (
 	"io/ioutil"
 	"golang.org/x/text/encoding/charmap"
 	"fmt"
-	"github.com/davidcolman89/reports-to-excel/config"
 )
 
 type RecibidoRepo struct {
@@ -52,8 +51,6 @@ func (r RecibidoRepo) Select() ([]models.ReporteRecibido, error){
 
 func (r RecibidoRepo) CreateCsv(users []models.ReporteRecibido) error {
 
-	conf := config.NewConfig("Config")
-
 	clientsFile, err := os.OpenFile(r.Path, os.O_RDWR|os.O_CREATE, os.ModePerm)
 
 	if err != nil {
@@ -67,7 +64,7 @@ func (r RecibidoRepo) CreateCsv(users []models.ReporteRecibido) error {
 		writerWindows1552 := charmap.Windows1252.NewEncoder().Writer(out)
 
 		writer := csv.NewWriter(writerWindows1552)
-		writer.Comma = conf.CsvDelimiter
+		writer.Comma = ';'
 
 		return gocsv.NewSafeCSVWriter(writer)
 	})
