@@ -1,6 +1,7 @@
 # reports sql queries to excel(CSV) with enconding Windows-1252
 ## How to use?
  * At the root of the project:
+ 
   1- create 'config.json'
   ```json
   {
