@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8bdd7261-baaa-48cd-bb5c-3fc0add5e616" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/queries/recibidos/gna.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/queries/recibidos/pfa.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/queries/recibidos/pna.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/queries/recibidos/psa.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/entities/ReporteRecibidos.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/entities/ReporteRecibidos.go" afterDir="false" />
@@ -71,11 +67,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReporteRecibidos.go" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ReporteRecibidos.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/ReporteRecibidos.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="19" />
+            <state relative-caret-position="221">
+              <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="19" column="9" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -110,8 +115,8 @@
       <file leaf-file-name="config.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/config.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+            <state relative-caret-position="272">
+              <caret line="16" column="4" lean-forward="true" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
               <folding>
                 <element signature="e#16#61#0" expanded="true" />
               </folding>
@@ -172,13 +177,11 @@
         <option value="$PROJECT_DIR$/app/services/Interfaces.go" />
         <option value="$PROJECT_DIR$/app/services/Recibido.go" />
         <option value="$PROJECT_DIR$/app/entities/User.go" />
-        <option value="$PROJECT_DIR$/app/models/ReporteRecibidos.go" />
         <option value="$PROJECT_DIR$/app/repositories/Interfaces.go" />
         <option value="$PROJECT_DIR$/app/repositories/User.go" />
         <option value="$PROJECT_DIR$/queries/recibidos.json" />
         <option value="$PROJECT_DIR$/app/queries/recibidos_pfa.sql" />
         <option value="$PROJECT_DIR$/app/entities/ReporteRecibidos.go" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/main.go" />
         <option value="$PROJECT_DIR$/app/queries/recibidos/gna.sql" />
         <option value="$PROJECT_DIR$/app/queries/recibidos/pna.sql" />
@@ -186,6 +189,8 @@
         <option value="$PROJECT_DIR$/config/config.go" />
         <option value="$PROJECT_DIR$/config.json" />
         <option value="$PROJECT_DIR$/app/repositories/Recibido.go" />
+        <option value="$PROJECT_DIR$/app/models/ReporteRecibidos.go" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -215,23 +220,6 @@
             <path>
               <item name="reports-to-excel" type="b2602c69:ProjectViewProjectNode" />
               <item name="reports-to-excel" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="reports-to-excel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="reports-to-excel" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="reports-to-excel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="reports-to-excel" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="entities" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="reports-to-excel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="reports-to-excel" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -334,7 +322,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-3" y="-3" width="1542" height="830" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -573,13 +560,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="5" lean-forward="true" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/github.com/gin-gonic/gin/context.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="233">
@@ -619,16 +599,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="31" column="14" selection-start-line="31" selection-start-column="14" selection-end-line="31" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/config.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
-          <folding>
-            <element signature="e#16#61#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -696,8 +666,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/ReporteRecibidos.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="19" />
+        <state relative-caret-position="221">
+          <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/config.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="4" lean-forward="true" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
+          <folding>
+            <element signature="e#16#61#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="9" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
         </state>
       </provider>
     </entry>
