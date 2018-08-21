@@ -11,6 +11,8 @@ import (
 	"encoding/csv"
 	"io/ioutil"
 	"golang.org/x/text/encoding/charmap"
+	"fmt"
+	"github.com/davidcolman89/reports-to-excel/config"
 )
 
 type RecibidoRepo struct {
@@ -27,14 +29,13 @@ func (r RecibidoRepo) Select() ([]models.ReporteRecibido, error){
 	var entity []entities.ReporteRecibido
 	var model []models.ReporteRecibido
 
-	sqlFile, err := ioutil.ReadFile("./app/queries/recibidos/pfa.sql")
+	err := r.getDataByFuerza(&entity, "pfa")
 
 	if err!=nil {
 		return model, err
 	}
 
-	query := string(sqlFile)
-	err = r.Db.Select(&entity, query)
+	err = r.getDataByFuerza(&entity, "gna")
 
 	if err!=nil {
 		return model, err
@@ -51,6 +52,8 @@ func (r RecibidoRepo) Select() ([]models.ReporteRecibido, error){
 
 func (r RecibidoRepo) CreateCsv(users []models.ReporteRecibido) error {
 
+	conf := config.NewConfig("Config")
+
 	clientsFile, err := os.OpenFile(r.Path, os.O_RDWR|os.O_CREATE, os.ModePerm)
 
 	if err != nil {
@@ -64,10 +67,24 @@ func (r RecibidoRepo) CreateCsv(users []models.ReporteRecibido) error {
 		writerWindows1552 := charmap.Windows1252.NewEncoder().Writer(out)
 
 		writer := csv.NewWriter(writerWindows1552)
-		writer.Comma = '|'
+		writer.Comma = conf.CsvDelimiter
 
 		return gocsv.NewSafeCSVWriter(writer)
 	})
 
 	return gocsv.MarshalFile(&users, clientsFile)
+}
+
+func (r RecibidoRepo) getDataByFuerza(entity *[]entities.ReporteRecibido, fuerza string) error {
+
+	filename := fmt.Sprintf("./app/queries/recibidos/%v.sql",fuerza)
+	sqlFile, err := ioutil.ReadFile(filename)
+
+	if err!=nil {
+		return err
+	}
+
+	query := string(sqlFile)
+
+	return r.Db.Select(entity, query)
 }

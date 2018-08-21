@@ -23,7 +23,9 @@ func users(context *gin.Context) {
 	db, err := InitDb()
 	HandleError(context, err)
 
-	path := fmt.Sprintf("storage/users_%v.csv",time.Now().UnixNano())
+	fileName := fmt.Sprintf("users_%v.csv",time.Now().UnixNano())
+	path := fmt.Sprint("storage/",fileName)
+
 	userRepo := repositories.NewUserRepo(db,path)
 	userService := services.NewUserService(userRepo)
 
@@ -33,7 +35,7 @@ func users(context *gin.Context) {
 	err = userService.CreateCsv(users)
 	HandleError(context, err)
 
-	context.File(path)
+	HandleFileResponse(context, fileName, path)
 
 }
 
@@ -43,6 +45,7 @@ func declaracionesRecibidas(context *gin.Context) {
 
 	fileName := fmt.Sprintf("ddjjrecibidas_%v.csv",time.Now().UnixNano())
 	path := fmt.Sprint("storage/",fileName)
+
 	repo := repositories.NewRecibidoRepo(db,path)
 	service := services.NewRecibidoService(repo)
 
@@ -52,8 +55,13 @@ func declaracionesRecibidas(context *gin.Context) {
 	err = service.CreateCsv(recibidos)
 	HandleError(context, err)
 
-	context.Header("Content-type","application/octet-stream")
+	HandleFileResponse(context, fileName, path)
+}
+
+func HandleFileResponse(context *gin.Context, fileName string, path string) {
 	contentDisposition := fmt.Sprintf("attachment; filename=%s", fileName)
+
+	context.Header("Content-type", "application/octet-stream")
 	context.Header("Content-Disposition", contentDisposition)
 
 	context.File(path)
